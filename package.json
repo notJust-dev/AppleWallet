@@ -14,7 +14,9 @@
     "react": "18.2.0",
     "react-native": "0.73.6",
     "typescript": "^5.3.0",
-    "@types/react": "~18.2.45"
+    "@types/react": "~18.2.45",
+    "react-native-gesture-handler": "~2.14.0",
+    "react-native-reanimated": "~3.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
