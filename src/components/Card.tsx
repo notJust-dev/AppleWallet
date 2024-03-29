@@ -3,12 +3,11 @@ import Animated, {
   Easing,
   clamp,
   useAnimatedReaction,
-  useDerivedValue,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import { useWindowDimensions } from 'react-native';
+import { View, useWindowDimensions, StyleSheet } from 'react-native';
 
 const Card = ({ card, index, scrollY, activeCardIndex }) => {
   const [cardHeight, setCardHeight] = useState(0);
@@ -63,26 +62,37 @@ const Card = ({ card, index, scrollY, activeCardIndex }) => {
 
   return (
     <GestureDetector gesture={tap}>
-      <Animated.Image
-        source={card}
-        onLayout={(event) =>
-          setCardHeight(event.nativeEvent.layout.height + 10)
-        }
-        style={{
-          width: '100%',
-          height: undefined,
-          aspectRatio: 7 / 4,
-          marginVertical: 5,
-
-          transform: [
-            {
-              translateY: translateY,
-            },
-          ],
-        }}
-      />
+      <View style={styles.container}>
+        <Animated.Image
+          source={card}
+          onLayout={(event) =>
+            setCardHeight(event.nativeEvent.layout.height + 10)
+          }
+          style={[styles.image, { transform: [{ translateY }] }]}
+        />
+      </View>
     </GestureDetector>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    shadowColor: '#B387DF',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
+  image: {
+    width: '100%',
+    height: undefined,
+    aspectRatio: 7 / 4,
+    marginVertical: 5,
+  },
+});
 
 export default Card;

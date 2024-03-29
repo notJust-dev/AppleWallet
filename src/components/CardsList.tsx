@@ -1,6 +1,6 @@
-import { View, Image, useWindowDimensions } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, {
+import {
   cancelAnimation,
   useSharedValue,
   withDecay,
@@ -34,9 +34,6 @@ const CardsList = () => {
   const pan = Gesture.Pan()
     .onBegin(() => {
       cancelAnimation(scrollY);
-    })
-    .onStart(() => {
-      console.log('Panning started');
     })
     .onChange((event) => {
       scrollY.value = clamp(scrollY.value - event.changeY, 0, maxScrollY);
