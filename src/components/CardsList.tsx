@@ -26,6 +26,8 @@ const CardsList = () => {
   const [listHeight, setListHeight] = useState(0);
   const { height: screenHeight } = useWindowDimensions();
 
+  const activeCardIndex = useSharedValue(null);
+
   const scrollY = useSharedValue(0);
   const maxScrollY = listHeight - screenHeight + 70;
 
@@ -53,7 +55,13 @@ const CardsList = () => {
         onLayout={(event) => setListHeight(event.nativeEvent.layout.height)}
       >
         {cards.map((card, index) => (
-          <Card key={index} card={card} index={index} scrollY={scrollY} />
+          <Card
+            key={index}
+            card={card}
+            index={index}
+            scrollY={scrollY}
+            activeCardIndex={activeCardIndex}
+          />
         ))}
       </View>
     </GestureDetector>
